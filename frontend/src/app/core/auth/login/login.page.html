@@ -1,0 +1,28 @@
+<app-center
+    [styles]="setStyles()">
+    <div class="login-card">
+        <div class="card border border-0 bg-transparent">
+            <div class="card-body">
+                <div class="d-flex justify-content-center align-items-center mb-5">
+                    <img src="./assets/images/login_cart.png" class="card-img p-0 m-0" alt="cart" style="width: 80px;">
+                </div>
+                <div>
+                    <form>
+                        <div class="mb-3">
+                            <input type="email" class="form-control bg-transparent" id="exampleInputEmail1"
+                                aria-describedby="emailHelp" placeholder="{{'username' | uppercase}}">
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" class="form-control bg-transparent" id="exampleInputPassword1"
+                                placeholder="{{'password' | uppercase}}">
+                        </div>
+                        <button type="submit" class="btn btn-light w-100 mb-3">
+                            {{ "Login" | uppercase}}
+                        </button>
+                    </form>
+                    <p class="text-white text-end">Forgot password?</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</app-center>

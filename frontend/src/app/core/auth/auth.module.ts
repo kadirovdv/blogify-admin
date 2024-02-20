@@ -1,26 +1,19 @@
-import { CommonModule } from '@angular/common'
-import { NgModule } from '@angular/core'
-import { RouterModule } from '@angular/router'
-import { SharedModule } from '../shared/shared.module'
-import { LoginPage } from './login/login.page'
-import { CardComponent } from '../components/card/card.component'
+import { NgModule } from "@angular/core"
+import { LoginPage } from "./login/login.page"
+import { AuthRoutingModule } from "./auth.routing.module"
+import { JustifyCenterComponent } from "../shared/components/justify-center/justify-center.component"
+import { CommonModule } from "@angular/common"
 
 @NgModule({
     declarations: [
         LoginPage,
-        CardComponent
+        JustifyCenterComponent
     ],
     imports: [
-        SharedModule,
-        CommonModule,
-        RouterModule.forChild([
-            {
-                path: "",
-                component: LoginPage
-            }
-        ])
+        AuthRoutingModule,
+        CommonModule
     ],
-    exports: [RouterModule],
+    exports: [],
     providers: [],
     bootstrap: []
 })
