@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
+import { FormGroup, FormControl, Validators } from "@angular/forms"; 
 
 @Component({
     selector: "app-login",
@@ -8,6 +9,7 @@ import { Title } from "@angular/platform-browser";
 })
 
 export class LoginPage implements OnInit {
+    private formGroup: FormGroup;
 
     public setStyles(): any {
         let styles = {
@@ -20,7 +22,12 @@ export class LoginPage implements OnInit {
     }
 
     constructor(private title: Title) {
-        this.title.setTitle("Login | Blog")
+        this.title.setTitle("Login | Blog");
+
+        this.formGroup = new FormGroup({
+            username: new FormControl('', [Validators.required, Validators.minLength(10)]),
+            password: new FormControl('', [Validators.required, Validators.minLength(20)])
+        });
     }
 
     ngOnInit(): void {

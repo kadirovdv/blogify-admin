@@ -1,0 +1,7 @@
+<div *ngIf="show" class="toast-container position-fixed top-0 end-0 p-3">
+    <ngb-toast header="Whoops!" [delay]="8800" (hide)="show = false;">
+        Looks like you're lost, you'll be redirected after <b>{{ counter }}</b>
+    </ngb-toast>
+</div>
+<div class="image-wrapper">
+</div>
