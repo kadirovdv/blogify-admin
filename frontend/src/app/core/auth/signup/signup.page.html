@@ -1,0 +1,67 @@
+<app-center>
+  <div class="form-card">
+    <div class="card border border-0 bg-transparent">
+      <div class="card-body">
+        <div class="d-flex justify-content-center align-items-center mb-5">
+          <img
+            src="./assets/images/login_cart.png"
+            class="card-img p-0 m-0"
+            alt="cart"
+            style="width: 80px"
+          />
+        </div>
+        <div>
+          <form [formGroup]="signupForm" (ngSubmit)="signup()">
+            <div class="d-flex mb-3">
+              <div class="me-1">
+                <input
+                  type="text"
+                  class="form-control bg-transparent"
+                  id="exampleInputUsername"
+                  aria-describedby="emailHelp"
+                  placeholder="@username"
+                  formControlName="username"
+                  required
+                />
+              </div>
+              <div class="ms-3">
+                <input
+                  type="email"
+                  class="form-control bg-transparent"
+                  id="exampleInputEmail"
+                  formControlName="email"
+                  placeholder="email(optional)"
+                />
+              </div>
+            </div>
+            <div class="mb-3">
+              <input
+                type="password"
+                class="form-control bg-transparent mb-3"
+                id="exampleInputPassword1"
+                formControlName="password"
+                placeholder="password"
+              />
+              <input
+                type="password"
+                class="form-control bg-transparent"
+                id="exampleInputPasswordConfirm1"
+                formControlName="passwordConfirm"
+                placeholder="confirm password"
+              />
+            </div>
+
+            <button type="submit" class="btn btn-light w-100 mb-3">
+              SIGNUP
+            </button>
+          </form>
+          <a
+            [routerLink]="['/auth/login']"
+            class="text-white text-end text-decoration-none"
+            ><p>Have an account?</p></a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</app-center>

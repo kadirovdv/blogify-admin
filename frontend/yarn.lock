@@ -4385,6 +4385,20 @@ neo-async@^2.6.2:
   resolved "https://registry.npmjs.org/neo-async/-/neo-async-2.6.2.tgz"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
+ngx-progressbar@9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/ngx-progressbar/-/ngx-progressbar-9.0.0.tgz#71eabd9bebb67cf887e3e776f6747bd34777badc"
+  integrity sha512-QaDxKY3KNlOdzPgdVzoUZVemZIM4YHmn3XrzbyQHWUaD1Gd6fr3BOJ+tTMKEfrJzjFQte/lszAKCaTrHY0g95w==
+  dependencies:
+    tslib "^2.0.0"
+
+ngx-toastr@14.1.1:
+  version "14.1.1"
+  resolved "https://registry.yarnpkg.com/ngx-toastr/-/ngx-toastr-14.1.1.tgz#d12f2a454d96a54e6366cf8b6d18e294e232df95"
+  integrity sha512-ZfldGplwfw2eFMswicrad6laBUz6DcaWFhuRNngHd9VWPTOBwVWzGhQiptuaomN/6Nc4sCNMCOMH+AE5ML8TVg==
+  dependencies:
+    tslib "^2.2.0"
+
 nice-napi@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/nice-napi/-/nice-napi-1.0.2.tgz#dc0ab5a1eac20ce548802fc5686eaa6bc654927b"
@@ -6034,7 +6048,7 @@ tslib@^1.9.0:
   resolved "https://registry.npmjs.org/tslib/-/tslib-1.14.1.tgz"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
-tslib@^2.1.0, tslib@^2.3.0:
+tslib@^2.0.0, tslib@^2.1.0, tslib@^2.2.0, tslib@^2.3.0:
   version "2.6.2"
   resolved "https://registry.npmjs.org/tslib/-/tslib-2.6.2.tgz"
   integrity sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==

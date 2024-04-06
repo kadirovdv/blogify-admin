@@ -1,0 +1,24 @@
+.form-card {
+  width: 400px;
+  input {
+    &::placeholder {
+      color: #fff !important;
+    }
+
+    &[type="text"],
+    &[type="password"] {
+      color: #fff !important;
+    }
+  }
+  .btn-light {
+    color: #2148c0 !important;
+  }
+  input[type="email"],
+  input[type="password"] {
+    color: #fff !important;
+  }
+
+  .form-control:focus {
+    box-shadow: none !important;
+  }
+}
