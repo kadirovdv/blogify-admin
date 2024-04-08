@@ -4,6 +4,7 @@ import { LoginPage } from './login/login.page';
 import { SignupPage } from './signup/signup.page';
 import { ForgotPasswordPage } from './forgotpassword/forgot.password.page';
 import { AuthPage } from './auth.page';
+import { AuthGuardDisableIfAuth } from '../shared/guards/disable.auth.guard';
 
 const routes: Routes = [
   {
@@ -15,8 +16,16 @@ const routes: Routes = [
     path: '',
     component: AuthPage,
     children: [
-      { path: 'login', component: LoginPage },
-      { path: 'signup', component: SignupPage },
+      {
+        path: 'login',
+        component: LoginPage,
+        canActivate: [AuthGuardDisableIfAuth],
+      },
+      {
+        path: 'signup',
+        component: SignupPage,
+        canActivate: [AuthGuardDisableIfAuth],
+      },
       { path: 'forgot-password', component: ForgotPasswordPage },
     ],
   },

@@ -66,11 +66,11 @@ const sendProdError = (error, response) => {
 }
 
 module.exports = (error, request, response, next) => {
-  console.log(error);
   error.statusCode = error.statusCode || 500;
   error.status = error.status || "Internal Server Error";
 
   if (process.env.NODE_ENV === "development") {
+    if(error.name === "TokenExpiredError") error = handleJWTExpired(error);
     sendDevError(error, response);
   } else if (process.env.NODE_ENV === "production") {
     let err = { ...error };
