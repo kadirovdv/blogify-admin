@@ -1,9 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+// Related to the auth module &etc
 .login-card {
-    background: url("/assets/images/login_bg.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-origin: content-box;
-    width: 100vw;
-    height: 100vh;
-    background-position: top;
+  background: url("/assets/images/login_bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-origin: content-box;
+  width: 100vw;
+  height: 100vh;
+  background-position: top;
 }

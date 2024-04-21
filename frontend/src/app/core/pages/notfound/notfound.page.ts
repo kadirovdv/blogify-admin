@@ -24,7 +24,7 @@ export class NotFoundPage implements OnInit, OnDestroy {
         this.intervalID = setInterval(() => {
             if (this.counter <= 1) {
                 this.location
-                .go("/")
+                .historyGo(-1)
             }
             if (this.counter > 0) {
                 this.counter--;

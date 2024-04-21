@@ -1,0 +1,47 @@
+.sidebar {
+  width: 100%;
+  padding-top: 60px;
+
+  &-body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-item {
+    padding: 0px 0px 20px 35px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    svg {
+      stroke: #b1b1b1;
+    }
+    a {
+      color: #b1b1b1;
+      text-decoration: none !important;
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 18px;
+      margin-left: 8px;
+    }
+    &-active {
+      &::before {
+        content: "";
+        display: block;
+        height: 100%;
+        width: 5px;
+        position: absolute;
+        left: 0px;
+        background-color: #2d60ff;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+      }
+      a {
+        color: #2d60ff;
+      }
+      svg {
+        stroke: #2d60ff;
+      }
+    }
+  }
+}

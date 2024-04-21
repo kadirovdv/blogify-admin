@@ -55,15 +55,13 @@ export class LoginPage implements OnInit {
             }
       )
       .subscribe(
-        (user) => {
-          sessionStorage.setItem('userId', user.admin._id);
-          sessionStorage.setItem('token', user.token);
-          this.toastr.success('You are logged in', 'Success');
+        (admin) => {
+          sessionStorage.setItem('adminID', admin.admin._id);
+          sessionStorage.setItem('token', admin.token);
+          this.toastr.success(`Welcome back, ${admin.admin.username}!`, 'Success');
           this.router.navigate(['/dashboard']);
         },
         (_) => {
-          console.log(_);
-
           this.toastr.error(_.error.message, 'Failed');
         }
       );

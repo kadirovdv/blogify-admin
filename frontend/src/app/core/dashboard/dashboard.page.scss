@@ -1,0 +1,19 @@
+.dashboard-aside-left {
+    position: sticky !important;
+    top: 0;
+    left: 0;
+    max-width: 20%;
+    width: 20%;
+    height: 100vh;
+    border-right: 1px solid #E6EFF5;
+    padding-top: 30px;
+}
+
+.dashboard-aside-right {
+    width: 100%;
+    background-color: #F5F7FA;
+
+    &-body {
+        padding: 20px;
+    }
+}

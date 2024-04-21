@@ -54,6 +54,9 @@
             <button type="submit" class="btn btn-light w-100 mb-3">
               SIGNUP
             </button>
+            <button type="button" (click)="signupAsGuest()" class="btn btn-light w-100 mb-3">
+              SIGNUP AS GUEST
+            </button>
           </form>
           <a
             [routerLink]="['/auth/login']"

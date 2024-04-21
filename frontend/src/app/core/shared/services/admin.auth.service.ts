@@ -22,6 +22,6 @@ export class AdminAuthService {
 
   logout() {
     sessionStorage.removeItem('token');
-    sessionStorage.removeItem('userId');
+    sessionStorage.removeItem('adminID');
   }
 }

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundPage } from './core/pages/notfound/notfound.page';
 import { AuthGuardAuthCheck } from './core/shared/guards/auth.guard';
+import { CheckIfMatchesGuard } from './core/shared/guards/check.if.matches.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/auth/login', pathMatch: 'full' },
@@ -18,7 +19,7 @@ const routes: Routes = [
       ),
     canActivate: [AuthGuardAuthCheck],
   },
-  { path: '**', component: NotFoundPage },
+  { path: '**', component: NotFoundPage, canActivate: [CheckIfMatchesGuard] },
 ];
 
 @NgModule({
