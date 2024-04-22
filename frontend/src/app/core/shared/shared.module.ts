@@ -4,13 +4,14 @@ import { NgProgressModule } from 'ngx-progressbar';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpRequestProgressbarComponent } from './components/http-request-progressbar/http-request-progressbar.componenr';
 import { NgbToastModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { TooltipModule } from 'ng2-tooltip-directive';
 
 @NgModule({
   imports: [
     NgProgressModule,
     HttpClientModule,
     NgbToastModule,
-    NgbTooltipModule,
+    TooltipModule
   ],
   declarations: [NotFoundPage, HttpRequestProgressbarComponent],
   exports: [
@@ -19,7 +20,7 @@ import { NgbToastModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
     NgProgressModule,
     HttpClientModule,
     NgbToastModule,
-    NgbTooltipModule,
+    TooltipModule
   ],
   providers: [],
 })

@@ -21,6 +21,7 @@
     "@ng-bootstrap/ng-bootstrap": "^13.1.1",
     "@popperjs/core": "^2.10.2",
     "bootstrap": "^5.2.0",
+    "ng2-tooltip-directive": "^2.10.3",
     "ngx-progressbar": "9.0.0",
     "ngx-toastr": "14.1.1",
     "rxjs": "~7.5.0",

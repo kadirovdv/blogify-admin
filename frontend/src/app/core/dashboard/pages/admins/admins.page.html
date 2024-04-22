@@ -17,38 +17,19 @@
         <td>{{ admin.email }}</td>
         <td>
           <img
-            *ngIf="admin.roles == 'ADMIN'"
-            src="/assets/images/admin.svg"
-            ngbTooltip="Admin"
-            width="25"
-          />
-          <img
-            *ngIf="admin.roles == 'MODERATOR'"
-            src="/assets/images/moderator.svg"
-            ngbTooltip="Moderator"
-            width="25"
-          />
-          <img
-            *ngIf="admin.roles == 'SUPER-ADMIN'"
-            src="/assets/images/super.admin.svg"
-            ngbTooltip="Super Admin"
-            width="25"
-          />
-          <img
-            *ngIf="admin.roles == 'ADMIN-CONTROLLER'"
-            src="/assets/images/admin.controller.svg"
-            ngbTooltip="Admin Controller"
+            [src]="admin.roles == 'ADMIN' ? '/assets/images/admin.svg' : admin.roles == 'MODERATOR' ? '/assets/images/moderator.svg' : admin.roles == 'SUPER-ADMIN' ? '/assets/images/super.admin.svg' : '/assets/images/admin.controller.svg'"
+            [tooltip]="admin.roles == 'ADMIN' ? 'ADMIN' : admin.roles == 'MODERATOR' ? 'MODERATOR' : admin.roles == 'SUPER-ADMIN' ? 'SUPER-ADMIN' : 'ADMIN-CONTROLLER'"
             width="25"
           />
         </td>
         <td>
           <div
             [class]="admin.active ? 'active' : 'inactive'"
-            [ngbTooltip]="admin.active ? 'This user is active' : 'This user is inactive'"
+            [tooltip]="admin.active ? 'This user is active' : 'This user is inactive'"
           ></div>
         </td>
         <td>
-          <button class="btn btn-danger">
+          <button class="btn btn-danger me-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="icon icon-tabler icon-tabler-trash"
@@ -69,7 +50,7 @@
               <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
             </svg>
           </button>
-          <button class="btn btn-primary">
+          <button class="btn btn-primary me-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="icon icon-tabler icon-tabler-edit"
@@ -90,6 +71,24 @@
                 d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"
               />
               <path d="M16 5l3 3" />
+            </svg>
+          </button>
+          <button class="btn btn-warning">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="icon icon-tabler icon-tabler-ban"
+              width="25"
+              height="25"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="#fff"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+              <path d="M5.7 5.7l12.6 12.6" />
             </svg>
           </button>
         </td>
