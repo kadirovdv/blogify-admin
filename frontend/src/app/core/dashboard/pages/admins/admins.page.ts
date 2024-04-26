@@ -8,9 +8,13 @@ import { APIService } from 'src/app/core/shared/services/api.service';
   styleUrls: ['./admins.page.scss'],
 })
 export class AdminsPage implements OnInit {
+  // Vars to fetch admin-list
   adminList: Array<any> = [];
   adminRolesCount: any = {};
   adminRolesList: Array<any> = [];
+
+  // Vars to block an admin
+  adminIDToBlock: string = '';
 
   constructor(
     private setNavbarTitle: SetNabvarTitleService,
@@ -33,5 +37,10 @@ export class AdminsPage implements OnInit {
 
       (_) => {}
     );
+  }
+
+  openAdminBlockModal(id: string) {
+    this.adminIDToBlock = id;
+
   }
 }

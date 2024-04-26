@@ -129,7 +129,7 @@ exports.blockAdmin = appAsyncHandler(async (request, response, next) => {
   let advancedDays = new Date(date);
   advancedDays.setDate(advancedDays.getDate() + 30);
 
-  const admin = await Admin.findByIdAndUpdate(request.params.id, {
+  const admin = await Admin.findByIdAndUpdate(request.body.id, {
     active: false,
     willBeActivatedAt: advancedDays,
   });

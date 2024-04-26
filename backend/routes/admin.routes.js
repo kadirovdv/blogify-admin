@@ -19,15 +19,9 @@ router
 
 router.route("/login").post(authController.login);
 
-router.post(
-  "/forgot/password",
-  authController.forgotPassword
-);
+router.post("/forgot/password", authController.forgotPassword);
 
-router.patch(
-  "/reset/password/:token",
-  authController.resetPassword
-);
+router.patch("/reset/password/:token", authController.resetPassword);
 
 router.patch(
   "/update/password",
@@ -42,14 +36,16 @@ router.patch(
   adminController.updateAdmin
 );
 
+router.patch(
+  "/block",
+  authController.protect,
+  adminController.permissions("UPDATE"),
+  adminController.blockAdmin
+);
+
 router
   .route("/:id")
   .get(authController.protect, adminController.getAdminById)
-  .patch(
-    authController.protect,
-    adminController.permissions("UPDATE"),
-    adminController.blockAdmin
-  )
   .delete(
     authController.protect,
     adminController.permissions("DELETE"),

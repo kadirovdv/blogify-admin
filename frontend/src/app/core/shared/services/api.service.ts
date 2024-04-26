@@ -11,4 +11,8 @@ export class APIService {
   getAdmins(): Observable<any> {
     return this.http.get('/api/admin');
   }
+
+  blockAdmin(id: string): Observable<any> {
+    return this.http.patch('/api/admin/block', id);
+  }
 }
