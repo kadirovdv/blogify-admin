@@ -30,22 +30,23 @@ exports.getAdminById = appAsyncHandler(async (request, response, next) => {
 
 exports.permissions = (...permissions) => {
   return async (request, response, next) => {
+    console.log(permissions, request.admin);
     const admin = await Admin.findById(request.params.id);
-    permissions.forEach((persmission) => {
+    permissions?.forEach((persmission) => {
       if (request.admin && !request.admin.permissions.includes(persmission)) {
         return next(
           new ErrorMessage("You are not allowed to perform this action", 403)
         );
       }
     });
-    if (admin.permissions.includes("NOTSELF")) {
-      return next(
-        new ErrorMessage(
-          `SUPER-ADMINS can not delete and deactivate themselves or other SUPER-ADMINS"!`,
-          403
-        )
-      );
-    }
+    // if (admin.permissions.includes("NOTSELF")) {
+    //   return next(
+    //     new ErrorMessage(
+    //       `SUPER-ADMINS can not delete and deactivate themselves or other SUPER-ADMINS"!`,
+    //       403
+    //     )
+    //   );
+    // }
     next();
   };
 };
@@ -129,13 +130,23 @@ exports.blockAdmin = appAsyncHandler(async (request, response, next) => {
   let advancedDays = new Date(date);
   advancedDays.setDate(advancedDays.getDate() + 30);
 
-  const admin = await Admin.findByIdAndUpdate(request.body.id, {
-    active: false,
-    willBeActivatedAt: advancedDays,
-  });
+  const admin = await Admin.findById(request.body.id);
+
+  if (admin) {
+    if (!admin.active) {
+      admin.active = true;
+      admin.willBeActivatedAt = undefined;
+      admin.save({ validateBeforeSave: false });
+    } else {
+      await Admin.findByIdAndUpdate(request.body.id, {
+        active: false,
+        willBeActivatedAt: advancedDays,
+      });
+    }
+  }
 
   if (!admin) {
-    return next(new ErrorMessage("Admin not found", 404));
+    return next(new ErrorMessage("Admin not found", 400));
   }
 
   response.status(200).json({

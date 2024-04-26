@@ -18,7 +18,7 @@ export class LoginPage implements OnInit {
     private toastr: ToastrService,
     private router: Router
   ) {
-    this.title.setTitle('Login | Blog');
+    this.title.setTitle('Login | Blogify');
 
     this.loginForm = new FormGroup({
       enterby: new FormControl('', [

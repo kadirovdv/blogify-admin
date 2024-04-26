@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpRequestInterCeptorLoader } from './core/shared/interceptors/http-request-progressbar.interceptor';
 import { HttpRequestInterCeptorToken } from './core/shared/interceptors/http-request-send-token.interceptor';
+import { AdminAliveCheckInterceptor } from './core/shared/interceptors/check.if.admin.alive.interceptor';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -33,7 +34,12 @@ import { HttpRequestInterCeptorToken } from './core/shared/interceptors/http-req
       provide: HTTP_INTERCEPTORS,
       useClass: HttpRequestInterCeptorToken,
       multi: true,
-    }
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AdminAliveCheckInterceptor,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })

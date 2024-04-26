@@ -15,7 +15,10 @@
         <tr *ngFor="let admin of adminList, let idx = index">
           <th scope="row">{{ idx + 1 }}</th>
           <td>{{ admin.username }}</td>
-          <td>{{ admin.email }}</td>
+          <td *ngIf="admin.email; else noemail">{{ admin.email }}</td>
+          <ng-template #noemail>
+            <td class="fw-bold">(This user has no email)</td>
+          </ng-template>
           <td>
             <img
               [src]="admin.roles == 'ADMIN' ? '/assets/images/admin.svg' : admin.roles == 'MODERATOR' ? '/assets/images/moderator.svg' : admin.roles == 'SUPER-ADMIN' ? '/assets/images/super.admin.svg' : '/assets/images/admin.controller.svg'"
@@ -74,7 +77,7 @@
                 <path d="M16 5l3 3" />
               </svg>
             </button>
-            <button class="btn btn-warning">
+            <button class="btn btn-warning" (click)="blockAdminById(admin._id)">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="icon icon-tabler icon-tabler-ban"

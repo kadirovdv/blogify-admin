@@ -24,6 +24,11 @@ export class AdminsPage implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getAdmins();
+  }
+
+  getAdmins() {
+    this.adminList = [];
     this.apiService.getAdmins().subscribe(
       (admins) => {
         this.adminList.push(...admins);
@@ -41,6 +46,16 @@ export class AdminsPage implements OnInit {
 
   openAdminBlockModal(id: string) {
     this.adminIDToBlock = id;
+  }
 
+  blockAdminById(id: string) {
+    this.apiService.blockAdmin(id).subscribe(
+      () => {
+        this.getAdmins();
+      },
+      (_) => {
+        console.log(_.error.message);
+      }
+    );
   }
 }

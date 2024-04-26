@@ -140,6 +140,18 @@ exports.login = appAsyncHandler(async (request, response, next) => {
   createAndSendToken(admin, 200, response);
 });
 
+exports.checkCurrentAdminAvailability = appAsyncHandler(
+  async (request, response, next) => {
+    const currentAdmin = await Admin.findById(request.params.id);
+
+    if (!currentAdmin) {
+      return next(new ErrorMessage("Unavailable user!", 400));
+    }
+
+    response.status(200).json({ status: "available" });
+  }
+);
+
 exports.protect = appAsyncHandler(async (request, response, next) => {
   let token;
 

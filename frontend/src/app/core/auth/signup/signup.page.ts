@@ -19,7 +19,7 @@ export class SignupPage implements OnInit {
     private toastr: ToastrService,
     private router: Router
   ) {
-    this.title.setTitle('Signup | Blog');
+    this.title.setTitle('Signup | Blogify');
 
     this.signupForm = new FormGroup({
       username: new FormControl('', [

@@ -20,6 +20,7 @@ router
 router.route("/login").post(authController.login);
 
 router.post("/forgot/password", authController.forgotPassword);
+router.get("/availability/:id", authController.checkCurrentAdminAvailability);
 
 router.patch("/reset/password/:token", authController.resetPassword);
 

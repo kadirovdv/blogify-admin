@@ -12,6 +12,10 @@ export class AdminAuthService {
     return sessionStorage.getItem('token');
   }
 
+  getCurrentAdmin(id: any): Observable<any> {
+    return this.http.get<boolean>(`/admin/availability/${id}`);
+  }
+
   login(admin: any): Observable<any> {
     return this.http.post('/api/admin/login', admin);
   }

@@ -12,7 +12,11 @@ export class APIService {
     return this.http.get('/api/admin');
   }
 
-  blockAdmin(id: string): Observable<any> {
-    return this.http.patch('/api/admin/block', id);
+  getAdminById(id: string): Observable<any> {
+    return this.http.get(`/api/admin/${id}`);
+  }
+
+  blockAdmin(id: any): Observable<any> {
+    return this.http.patch('/api/admin/block', { id });
   }
 }
