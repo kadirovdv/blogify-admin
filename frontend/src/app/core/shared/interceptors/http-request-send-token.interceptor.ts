@@ -45,7 +45,7 @@ export class HttpRequestInterCeptorToken implements HttpInterceptor {
 
     return next.handle(adminRequest).pipe(
       catchError((error) => {
-        if (error.status == 401 || error.status == 0 || error.status == 403) {
+        if (error.status == 401) {
           this.deactive.setDeactivation();
           if (!req.url.includes('/login')) {
             this.toastr.warning(error.error.message, 'Login required');

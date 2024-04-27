@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SetNabvarTitleService } from '../../services/set.navbar.title.service';
 import { APIService } from 'src/app/core/shared/services/api.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-dashboard-admins',
@@ -8,17 +9,20 @@ import { APIService } from 'src/app/core/shared/services/api.service';
   styleUrls: ['./admins.page.scss'],
 })
 export class AdminsPage implements OnInit {
+  public loading: boolean = false;
+
   // Vars to fetch admin-list
   adminList: Array<any> = [];
-  adminRolesCount: any = {};
-  adminRolesList: Array<any> = [];
+  public adminRoles: any = {};
 
   // Vars to block an admin
   adminIDToBlock: string = '';
+  public adminID: string | null = sessionStorage.getItem('adminID');
 
   constructor(
     private setNavbarTitle: SetNabvarTitleService,
-    private apiService: APIService
+    private apiService: APIService,
+    private toastr: ToastrService
   ) {
     this.setNavbarTitle.setTitle('Admins');
   }
@@ -27,17 +31,37 @@ export class AdminsPage implements OnInit {
     this.getAdmins();
   }
 
+  countAdminRoles(arr: any[]): object {
+    arr.forEach((admin) => {
+      switch (admin.roles) {
+        case 'ADMIN':
+        case 'MODERATOR':
+        case 'SUPER-ADMIN':
+        case 'ADMIN-CONTROLLER':
+          this.adminRoles[admin.roles]++;
+          break;
+        default:
+          break;
+      }
+    });
+
+    return this.adminRoles;
+  }
+
   getAdmins() {
+    this.loading = true;
     this.adminList = [];
     this.apiService.getAdmins().subscribe(
       (admins) => {
         this.adminList.push(...admins);
-        // return this.adminList.forEach((admin) => {
-        //   return [
-        //     this.adminRolesCount[admin.roles] = (this.adminRolesCount[admin.roles] || 0) + 1,
-        //     this.adminRolesList.push(this.adminRolesCount)
-        //   ]
-        // });
+        this.adminRoles = {
+          ADMIN: 0,
+          MODERATOR: 0,
+          'SUPER-ADMIN': 0,
+          'ADMIN-CONTROLLER': 0,
+        };
+        this.adminRoles = this.countAdminRoles(admins);
+        this.loading = false;
       },
 
       (_) => {}
@@ -54,7 +78,7 @@ export class AdminsPage implements OnInit {
         this.getAdmins();
       },
       (_) => {
-        console.log(_.error.message);
+        this.toastr.error(_.error.message, 'Failed to block');
       }
     );
   }

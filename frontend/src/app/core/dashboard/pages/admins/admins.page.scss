@@ -21,3 +21,22 @@
         background-color: transparent !important;
     }
 }
+
+.admin {
+    &-roles-count {
+        margin: 15px 0px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &-role {
+        width: 200px;
+        height: 56px;
+        padding: 10px;
+        background-color: #fff;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

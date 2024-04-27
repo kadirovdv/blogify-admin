@@ -30,8 +30,7 @@ exports.getAdminById = appAsyncHandler(async (request, response, next) => {
 
 exports.permissions = (...permissions) => {
   return async (request, response, next) => {
-    console.log(permissions, request.admin);
-    const admin = await Admin.findById(request.params.id);
+    const admin = await Admin.findById(request.body.id);
     permissions?.forEach((persmission) => {
       if (request.admin && !request.admin.permissions.includes(persmission)) {
         return next(
@@ -39,14 +38,18 @@ exports.permissions = (...permissions) => {
         );
       }
     });
-    // if (admin.permissions.includes("NOTSELF")) {
-    //   return next(
-    //     new ErrorMessage(
-    //       `SUPER-ADMINS can not delete and deactivate themselves or other SUPER-ADMINS"!`,
-    //       403
-    //     )
-    //   );
-    // }
+
+    if (
+      admin.username === request.admin.username &&
+      admin.roles === request.admin.roles
+    ) {
+      return next(
+        new ErrorMessage(
+          `SUPER-ADMINS and ADMIN-CONTROLLERS can not delete and deactivate themselves"!`,
+          403
+        )
+      );
+    }
     next();
   };
 };
@@ -137,10 +140,18 @@ exports.blockAdmin = appAsyncHandler(async (request, response, next) => {
       admin.active = true;
       admin.willBeActivatedAt = undefined;
       admin.save({ validateBeforeSave: false });
+      response.status(200).json({
+        status: "success",
+        message: "Admin unblocked successfully",
+      });
     } else {
       await Admin.findByIdAndUpdate(request.body.id, {
         active: false,
         willBeActivatedAt: advancedDays,
+      });
+      response.status(200).json({
+        status: "success",
+        message: "Admin blocked successfully",
       });
     }
   }
@@ -148,9 +159,4 @@ exports.blockAdmin = appAsyncHandler(async (request, response, next) => {
   if (!admin) {
     return next(new ErrorMessage("Admin not found", 400));
   }
-
-  response.status(200).json({
-    status: "success",
-    message: "Admin blocked successfully",
-  });
 });

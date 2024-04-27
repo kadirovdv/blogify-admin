@@ -6,14 +6,14 @@ const promisify = require("util.promisify");
 const crypto = require("crypto");
 const sendEmail = require("../utils/send.email");
 
-const signToken = (id) => {
-  return jwt.sign({ id: id }, process.env.SECRET_KEY, {
+const signToken = ({ id, username }) => {
+  return jwt.sign({ id: id, username: username }, process.env.SECRET_KEY, {
     expiresIn: process.env.JWT_EXPIRES,
   });
 };
 
 const createAndSendToken = (admin, statusCode, response) => {
-  const token = signToken(admin._id);
+  const token = signToken({ id: admin._id, username: admin.username });
 
   const cookieOptions = {
     expires: new Date(

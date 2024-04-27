@@ -23,6 +23,7 @@
     "bootstrap": "^5.2.0",
     "ng2-tooltip-directive": "^2.10.3",
     "ngx-progressbar": "9.0.0",
+    "ngx-skeleton-loader": "6.0.0",
     "ngx-toastr": "14.1.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

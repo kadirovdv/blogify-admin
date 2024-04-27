@@ -41,6 +41,15 @@
         <path d="M9 17v1a3 3 0 0 0 6 0v-1" />
       </svg>
     </li>
-    <li class="nav-item"></li>
+    <li class="nav-item">
+      <div ngbDropdown class="d-inline-block">
+        <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+          Acc
+        </button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button ngbDropdownItem (click)="authService.logout()">Log out</button>
+        </div>
+      </div>
+    </li>
   </ul>
 </nav>

@@ -22,7 +22,7 @@ export class AdminAliveCheckInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const adminID = JSON.stringify(sessionStorage.getItem('adminID'));
+    const adminID = sessionStorage.getItem('adminID');
     if (adminID) {
       return this.authService.getCurrentAdmin(adminID).pipe(
         tap((exists) => {

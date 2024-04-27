@@ -35,11 +35,11 @@ import { AdminAliveCheckInterceptor } from './core/shared/interceptors/check.if.
       useClass: HttpRequestInterCeptorToken,
       multi: true,
     },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AdminAliveCheckInterceptor,
-      multi: true,
-    },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: AdminAliveCheckInterceptor,
+    //   multi: true,
+    // },
   ],
   bootstrap: [AppComponent],
 })
