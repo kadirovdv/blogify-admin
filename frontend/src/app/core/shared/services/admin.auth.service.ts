@@ -15,7 +15,6 @@ export class AdminAuthService {
   }
 
   set name(name: string) {
-    this.username = sessionStorage.;
   }
 
 

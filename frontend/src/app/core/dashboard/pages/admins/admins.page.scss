@@ -1,42 +1,83 @@
 .inactive {
-    width: 15px;
-    height: 15px;
-    background-color: #dc3545;
-    border-radius: 50px;
+  width: 15px;
+  height: 15px;
+  background-color: #dc3545;
+  border-radius: 50px;
 }
 
 .active {
-    width: 15px;
-    height: 15px;
-    background-color: #2d60ff;
-    border-radius: 50px;
-} 
+  width: 15px;
+  height: 15px;
+  background-color: #2d60ff;
+  border-radius: 50px;
+}
 
 .app-card {
-    width: 100%;
-    height: 100%;
-    background-color: #F5F7FA !important;
-    padding: 10px;
-    table {
-        background-color: transparent !important;
-    }
+  width: 100%;
+  height: 100%;
+  background-color: #f5f7fa !important;
+  padding: 10px;
+  table {
+    background-color: transparent !important;
+  }
 }
 
 .admin {
-    &-roles-count {
-        margin: 15px 0px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+  &-roles-count {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &-role {
+    width: 200px;
+    height: 90px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    &-name {
+      font-family: "Inter";
+      font-style: normal;
+      font-size: 16px;
+      color: #718ebf;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      padding-right: 10px;
     }
-    &-role {
-        width: 200px;
-        height: 56px;
-        padding: 10px;
-        background-color: #fff;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    &-status {
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 600;
+      font-size: 20px;
+      color: #232323;
     }
+    &-svg {
+      padding: 13px;
+      border-radius: 50%;
+      margin-right: 10px;
+      &-admin {
+        background-color: #ffb93841;
+      }
+      &-moderator {
+        background-color: #396bff23;
+      }
+      &-ctrl {
+        background-color: #16dbcb1c;
+      }
+      &-super {
+        background-color: #ffe0eb;
+      }
+    }
+  }
+}
+
+.admin-create-new {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
 }

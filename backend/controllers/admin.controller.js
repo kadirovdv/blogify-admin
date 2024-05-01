@@ -40,6 +40,18 @@ exports.permissions = (...permissions) => {
     });
 
     if (
+      admin.roles.includes("SUPER-ADMIN") ||
+      admin.roles.includes("ADMIN-CONTROLLER")
+    ) {
+      return next(
+        new ErrorMessage(
+          `SUPER-ADMINS and ADMIN-CONTROLLERS can not delete and deactivate themselves"!`,
+          403
+        )
+      );
+    }
+
+    if (
       admin.username === request.admin.username &&
       admin.roles === request.admin.roles
     ) {
