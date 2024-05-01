@@ -23,7 +23,7 @@ import { AdminsPage } from './pages/admins/admins.page';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule,
+    SharedModule
   ],
   exports: [DashboardPage],
   providers: [SetNabvarTitleService],

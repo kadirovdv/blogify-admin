@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SetNabvarTitleService } from '../../services/set.navbar.title.service';
 import { APIService } from 'src/app/core/shared/services/api.service';
 import { ToastrService } from 'ngx-toastr';
+import { Admin } from 'src/app/core/shared/interfaces/admin.interface';
 
 @Component({
   selector: 'app-dashboard-admins',
@@ -52,7 +53,7 @@ export class AdminsPage implements OnInit {
     this.loading = true;
     this.adminList = [];
     this.apiService.getAdmins().subscribe(
-      (admins) => {
+      (admins: Admin[]) => {
         this.adminList.push(...admins);
         this.adminRoles = {
           ADMIN: 0,
