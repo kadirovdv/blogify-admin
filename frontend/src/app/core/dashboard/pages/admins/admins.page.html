@@ -158,7 +158,7 @@
               <button
                 class="btn btn-warning"
                 (click)="blockAdminById(admin._id)"
-                [disabled]="admin.roles.includes('SUPER-ADMIN') || admin.roles.includes('ADMIN-CONTROLLER')"
+                [disabled]="admin.roles.includes('SUPER-ADMIN') || admin.roles.includes('ADMIN-CONTROLLER') || admin.roles.includes('ADMIN') || admin.roles.includes('MODERATOR')"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

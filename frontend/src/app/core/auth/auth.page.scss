@@ -5,3 +5,17 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.password {
+  position: relative;
+
+  &-show-toggle {
+    position: absolute;
+    top: 5px;
+    right: -5px;
+    width: 40px;
+    height: 100%;
+    cursor: pointer;
+    z-index: 99 !important;
+  }
+}

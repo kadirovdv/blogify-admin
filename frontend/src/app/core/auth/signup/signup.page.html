@@ -31,30 +31,59 @@
                   id="exampleInputEmail"
                   formControlName="email"
                   placeholder="email(optional)"
+                  [required]="signupForm.get('username')?.value.length <= 0"
                 />
               </div>
             </div>
             <div class="mb-3">
-              <input
-                type="password"
-                class="form-control bg-transparent mb-3"
-                id="exampleInputPassword1"
-                formControlName="password"
-                placeholder="password"
-              />
-              <input
-                type="password"
-                class="form-control bg-transparent"
-                id="exampleInputPasswordConfirm1"
-                formControlName="passwordConfirm"
-                placeholder="confirm password"
-              />
+              <div class="password">
+                <input
+                  [type]="togglePasswordVisibility ? 'text' : 'password'"
+                  class="form-control bg-transparent mb-3"
+                  id="exampleInputPassword1"
+                  formControlName="password"
+                  placeholder="password"
+                />
+                <div
+                  class="password-show-toggle"
+                  (click)="togglePasswordVisibility = !togglePasswordVisibility"
+                >
+                  <img
+                    [src]="togglePasswordVisibility ? '/assets/images/eye.svg' : '/assets/images/no.eye.svg'"
+                    width="25"
+                    alt="eye"
+                  />
+                </div>
+              </div>
+              <div class="password">
+                <input
+                  [type]="togglePasswordConfirmVisibility ? 'text' : 'password'"
+                  class="form-control bg-transparent"
+                  id="exampleInputPasswordConfirm1"
+                  formControlName="passwordConfirm"
+                  placeholder="confirm password"
+                />
+                <div
+                  class="password-show-toggle"
+                  (click)="togglePasswordConfirmVisibility = !togglePasswordConfirmVisibility"
+                >
+                  <img
+                    [src]="togglePasswordConfirmVisibility ? '/assets/images/eye.svg' : '/assets/images/no.eye.svg'"
+                    width="25"
+                    alt="eye"
+                  />
+                </div>
+              </div>
             </div>
 
             <button type="submit" class="btn btn-light w-100 mb-3">
               SIGNUP
             </button>
-            <button type="button" (click)="signupAsGuest()" class="btn btn-light w-100 mb-3">
+            <button
+              type="button"
+              (click)="signupAsGuest()"
+              class="btn btn-light w-100 mb-3"
+            >
               SIGNUP AS GUEST
             </button>
           </form>

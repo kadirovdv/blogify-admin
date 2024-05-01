@@ -8,10 +8,12 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.page.html',
-  styleUrls: ['../styles/auth.styles.scss'],
+  styleUrls: ['../styles/auth.styles.scss', '../auth.page.scss'],
 })
 export class SignupPage implements OnInit {
   signupForm: FormGroup;
+  togglePasswordVisibility: boolean = false;
+  togglePasswordConfirmVisibility: boolean = false;
 
   constructor(
     private title: Title,
@@ -88,6 +90,6 @@ export class SignupPage implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authService.logout();
+    // this.authService.logout();
   }
 }

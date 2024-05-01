@@ -8,10 +8,12 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
-  styleUrls: ['../styles/auth.styles.scss'],
+  styleUrls: ['../styles/auth.styles.scss', '../auth.page.scss'],
 })
 export class LoginPage implements OnInit {
   loginForm: FormGroup;
+  togglePasswordVisibility: boolean = false;
+
   constructor(
     private title: Title,
     private authService: AdminAuthService,
@@ -33,7 +35,7 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authService.logout()
+    this.authService.logout();
   }
 
   checkIfValueEmail(value: string): boolean {
@@ -58,7 +60,10 @@ export class LoginPage implements OnInit {
         (admin) => {
           sessionStorage.setItem('adminID', admin.admin._id);
           sessionStorage.setItem('token', admin.token);
-          this.toastr.success(`Welcome back, ${admin.admin.username}!`, 'Success');
+          this.toastr.success(
+            `Welcome back, ${admin.admin.username}!`,
+            'Success'
+          );
           this.router.navigate(['/dashboard']);
         },
         (_) => {
@@ -66,4 +71,5 @@ export class LoginPage implements OnInit {
         }
       );
   }
+
 }

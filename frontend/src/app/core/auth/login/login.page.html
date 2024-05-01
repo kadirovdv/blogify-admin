@@ -21,14 +21,17 @@
                 formControlName="enterby"
               />
             </div>
-            <div class="mb-3">
+            <div class="password mb-3">
               <input
-                type="password"
+                [type]="togglePasswordVisibility ? 'text' : 'password'"
                 class="form-control bg-transparent"
                 id="exampleInputPassword1"
                 placeholder="password"
                 formControlName="password"
               />
+              <div class="password-show-toggle" (click)="togglePasswordVisibility = !togglePasswordVisibility">
+                <img [src]="togglePasswordVisibility ? '/assets/images/eye.svg' : '/assets/images/no.eye.svg'" width="25" alt="eye">
+              </div>
             </div>
             <button type="submit" class="btn btn-light w-100 mb-3">
                 LOGIN
