@@ -29,11 +29,17 @@
         </div>
         <div class="admin-role">
           <div class="admin-role-svg admin-role-svg-ctrl">
-            <img src="/assets/images/admin.controller.svg" width="30" alt="ADMIN" />
+            <img
+              src="/assets/images/admin.controller.svg"
+              width="30"
+              alt="ADMIN"
+            />
           </div>
           <div class="d-flex flex-column">
             <span class="admin-role-name">Admin Con..</span>
-            <span class="admin-role-status">{{ adminRoles['ADMIN-CONTROLLER'] }}</span>
+            <span class="admin-role-status"
+              >{{ adminRoles['ADMIN-CONTROLLER'] }}</span
+            >
           </div>
         </div>
         <div class="admin-role">
@@ -42,13 +48,18 @@
           </div>
           <div class="d-flex flex-column">
             <span class="admin-role-name">Super Admin</span>
-            <span class="admin-role-status">{{ adminRoles['SUPER-ADMIN'] }}</span>
+            <span class="admin-role-status"
+              >{{ adminRoles['SUPER-ADMIN'] }}</span
+            >
           </div>
         </div>
       </div>
       <div class="admin-create-new">
+        <button class="btn btn-primary me-2" (click)="getAdmins()">
+          <img src="/assets/images/reload.svg" width="30" alt="create new admin" />
+        </button>
         <button class="btn btn-primary">
-          <img src="/assets/images/add.svg" width="30" alt="create new admin">
+          <img src="/assets/images/add.svg" width="30" alt="create new admin" />
           Add new
         </button>
       </div>
@@ -85,7 +96,10 @@
               ></div>
             </td>
             <td>
-              <button class="btn btn-danger me-2" [disabled]="admin.roles.includes('SUPER-ADMIN') || admin.roles.includes('ADMIN-CONTROLLER')">
+              <button
+                class="btn btn-danger me-2"
+                [disabled]="admin.roles.includes('SUPER-ADMIN') || admin.roles.includes('ADMIN-CONTROLLER')"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="icon icon-tabler icon-tabler-trash"
@@ -106,7 +120,11 @@
                   <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
                 </svg>
               </button>
-              <button *ngIf="adminID !== admin._id; else toEditPage" class="btn btn-primary me-2" [disabled]="admin.roles.includes('SUPER-ADMIN') || admin.roles.includes('ADMIN-CONTROLLER')">
+              <button
+                *ngIf="adminID !== admin._id; else toEditPage"
+                class="btn btn-primary me-2"
+                [disabled]="admin.roles.includes('SUPER-ADMIN') || admin.roles.includes('ADMIN-CONTROLLER')"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="icon icon-tabler icon-tabler-edit"
@@ -130,7 +148,7 @@
                 </svg>
               </button>
               <ng-template #toEditPage>
-                <button class="btn btn-primary me-2" >
+                <button class="btn btn-primary me-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     class="icon icon-tabler icon-tabler-edit"
@@ -154,11 +172,11 @@
                   </svg>
                 </button>
               </ng-template>
-              
+
               <button
                 class="btn btn-warning"
                 (click)="blockAdminById(admin._id)"
-                [disabled]="admin.roles.includes('SUPER-ADMIN') || admin.roles.includes('ADMIN-CONTROLLER') || admin.roles.includes('ADMIN') || admin.roles.includes('MODERATOR')"
+                [disabled]="authService.getRole() === 'ADMIN' || authService.getRole()  === 'MODERATOR' || adminID === admin._id || admin.roles === 'ADMIN-CONTROLLER' || admin.roles === 'SUPER-ADMIN'"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

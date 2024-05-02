@@ -6,14 +6,14 @@ const promisify = require("util.promisify");
 const crypto = require("crypto");
 const sendEmail = require("../utils/send.email");
 
-const signToken = ({ id, username }) => {
-  return jwt.sign({ id: id, username: username }, process.env.SECRET_KEY, {
+const signToken = ({ id, username, role }) => {
+  return jwt.sign({ id: id, username: username, role: role }, process.env.SECRET_KEY, {
     expiresIn: process.env.JWT_EXPIRES,
   });
 };
 
 const createAndSendToken = (admin, statusCode, response) => {
-  const token = signToken({ id: admin._id, username: admin.username });
+  const token = signToken({ id: admin._id, username: admin.username, role: admin.roles });
 
   const cookieOptions = {
     expires: new Date(
@@ -136,6 +136,8 @@ exports.login = appAsyncHandler(async (request, response, next) => {
   if (!(await admin.checkPasswordMatch(password, admin.password))) {
     return next(new ErrorMessage("Incorrect password!", 401));
   }
+
+  console.log(admin);
 
   createAndSendToken(admin, 200, response);
 });

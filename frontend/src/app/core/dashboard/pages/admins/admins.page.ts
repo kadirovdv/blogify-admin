@@ -3,6 +3,8 @@ import { SetNabvarTitleService } from '../../services/set.navbar.title.service';
 import { APIService } from 'src/app/core/shared/services/api.service';
 import { ToastrService } from 'ngx-toastr';
 import { Admin } from 'src/app/core/shared/interfaces/admin.interface';
+import { AdminAuthService } from 'src/app/core/shared/services/admin.auth.service';
+import { ModalService } from 'src/app/core/shared/services/modal.service';
 
 @Component({
   selector: 'app-dashboard-admins',
@@ -23,6 +25,7 @@ export class AdminsPage implements OnInit {
   constructor(
     private setNavbarTitle: SetNabvarTitleService,
     private apiService: APIService,
+    public authService: AdminAuthService,
     private toastr: ToastrService
   ) {
     this.setNavbarTitle.setTitle('Admins');

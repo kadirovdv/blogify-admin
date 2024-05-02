@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
+
+const JWT = new JwtHelperService();
 
 @Injectable({
   providedIn: 'root',
@@ -9,14 +12,6 @@ import { Router } from '@angular/router';
 export class AdminAuthService {
   constructor(private http: HttpClient, private router: Router) {}
   username: string = '';
-
-  get name(): any {
-    return this.username;
-  }
-
-  set name(name: string) {
-  }
-
 
   getToken(): string | null {
     return sessionStorage.getItem('token');
@@ -37,6 +32,29 @@ export class AdminAuthService {
   logout() {
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('adminID');
-    return this.router.navigate(['/auth/login'])
+  }
+
+  // Getters
+
+  getUsername(): string {
+    if (this.getToken()) {
+      try {
+        return JWT.decodeToken(this.getToken() || '').username;
+      } catch (error) {
+        return '';
+      }
+    }
+    return '';
+  }
+
+  getRole(): string {
+    if (this.getToken()) {
+      try {
+        return JWT.decodeToken(this.getToken() || '').role;
+      } catch (error) {
+        return '';
+      }
+    }
+    return '';
   }
 }

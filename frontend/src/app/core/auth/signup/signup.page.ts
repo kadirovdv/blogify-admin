@@ -90,6 +90,6 @@ export class SignupPage implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.authService.logout();
+    this.authService.logout();
   }
 }

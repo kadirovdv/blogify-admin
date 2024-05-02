@@ -4,9 +4,10 @@ import { NotFoundPage } from '../pages/notfound/notfound.page';
 import { NgProgressModule } from 'ngx-progressbar';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpRequestProgressbarComponent } from './components/http-request-progressbar/http-request-progressbar.componenr';
-import { NgbToastModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   imports: [
@@ -17,11 +18,12 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     NgxSkeletonLoaderModule,
     NgbModule
   ],
-  declarations: [NotFoundPage, HttpRequestProgressbarComponent],
+  declarations: [NotFoundPage, HttpRequestProgressbarComponent, ModalComponent],
   exports: [
     NotFoundPage,
     HttpRequestProgressbarComponent,
     NgProgressModule,
+    ModalComponent,
     HttpClientModule,
     NgbToastModule,
     TooltipModule,

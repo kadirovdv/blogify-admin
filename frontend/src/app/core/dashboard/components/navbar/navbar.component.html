@@ -44,10 +44,11 @@
     <li class="nav-item">
       <div ngbDropdown class="d-inline-block">
         <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
-          Acc
+          {{ authService.getUsername() }}
         </button>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-          <button ngbDropdownItem (click)="authService.logout()">Log out</button>
+          <button ngbDropdownItem>Profile</button>
+          <button ngbDropdownItem (click)="[authService.logout(), router.navigate(['/auth/login'])]">Log out</button>
         </div>
       </div>
     </li>

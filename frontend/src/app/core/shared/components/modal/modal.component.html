@@ -1,0 +1,14 @@
+<div class="modal-header">
+  <h5 class="modal-title">{{ title }}</h5>
+  <div class="p-2" (click)="activeModal.dismiss('Cross Click')" style="cursor: pointer;">
+    <img src="/assets/images/close.svg" width="30" alt="close" />
+  </div>
+</div>
+
+<div class="modal-body">
+  <div class="modal-footer">
+    <button class="btn btn-danger" (click)="activeModal.dismiss('Cross Click')">
+      CLick
+    </button>
+  </div>
+</div>
