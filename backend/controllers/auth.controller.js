@@ -137,8 +137,6 @@ exports.login = appAsyncHandler(async (request, response, next) => {
     return next(new ErrorMessage("Incorrect password!", 401));
   }
 
-  console.log(admin);
-
   createAndSendToken(admin, 200, response);
 });
 

@@ -4,6 +4,7 @@ import { Title } from '@angular/platform-browser';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { AdminAuthService } from '../../shared/services/admin.auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { generateRandom } from '../../shared/functions/generate.random.creds';
 
 @Component({
   selector: 'app-signup',
@@ -59,20 +60,10 @@ export class SignupPage implements OnInit {
       );
   }
 
-  generateRandom(length: number): string {
-    const chars =
-      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let result = '';
-    for (let i = 0; i < length; i++) {
-      result += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    return result;
-  }
-
   signupAsGuest() {
-    const username = `user_${this.generateRandom(7)}`;
-    const email = `user_${this.generateRandom(5)}@gmail.com`;
-    const password = `p.${this.generateRandom(15)}`;
+    const username = `user_${generateRandom(7)}`;
+    const email = `user_${generateRandom(5)}@gmail.com`;
+    const password = `p.${generateRandom(15)}`;
     const passwordConfirm = password;
 
     this.authService

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Admin } from '../interfaces/admin.interface';
 
@@ -19,5 +19,21 @@ export class APIService {
 
   blockAdmin(id: any): Observable<any> {
     return this.http.patch('/api/admin/block', { id });
+  }
+
+  createAdmin(admin: any): Observable<any> {
+    return this.http.post('/api/admin/create', admin);
+  }
+
+  deleteAdminByRole(role: string): Observable<any> {
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      body: {
+        role: role,
+      },
+    };
+    return this.http.delete('/api/admin/delete/byrole', options);
   }
 }

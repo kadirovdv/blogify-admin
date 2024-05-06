@@ -1,0 +1,173 @@
+<div class="app-card">
+  <form [formGroup]="createAdminForm" (ngSubmit)="submit()">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div
+              class="admin-avatar bg-light rounded mb-3"
+              (click)="openInput()"
+            >
+              <img
+                [src]="viewImg ? viewImg : '/assets/images/person.svg'"
+                [style.width]="viewImg ? '400px' : '300px'"
+                class="p-3"
+                alt="admin avatar"
+              />
+            </div>
+            <input
+              type="file"
+              accept="image/*"
+              hidden
+              #fileInput
+              (change)="imgSelect($event)"
+            />
+            <input
+              class="form-control"
+              type="text"
+              placeholder="Or paste link here"
+            />
+          </div>
+          <div class="col-md-6">
+            <div class="input-group justify-content-between mb-3">
+              <div>
+                <label for="exampleFormControlInput1" class="form-label"
+                  >Email address</label
+                >
+                <input
+                  type="email"
+                  class="form-control"
+                  id="exampleFormControlInput1"
+                  placeholder="name@example.com"
+                  formControlName="email"
+                />
+              </div>
+              <div>
+                <label for="exampleFormControlInput2" class="form-label"
+                  >Admin name</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="exampleFormControlInput2"
+                  placeholder="@adminname"
+                  formControlName="username"
+                />
+              </div>
+            </div>
+            <div class="input-group flex-column mb-3">
+              <label for="exampleInputAdminRole" class="form-label"
+                >Admin Role</label
+              >
+              <div>
+                <select
+                  class="form-select"
+                  aria-label="Default select example"
+                  id="exampleInputAdminRole"
+                  (change)="setAdminRole($event)"
+                  formControlName="roles"
+                >
+                  <option selected>Open admin role menu</option>
+                  <option
+                    value="ADMIN-CONTROLLER"
+                    *ngIf="authServie.getRole() === 'ADMIN-CONTROLLER' || authServie.getRole() === 'SUPER-ADMIN'"
+                  >
+                    ADMIN-CONTROLLER
+                  </option>
+                  <option
+                    value="SUPER-ADMIN"
+                    *ngIf="authServie.getRole() === 'ADMIN-CONTROLLER' || authServie.getRole() === 'SUPER-ADMIN'"
+                  >
+                    SUPER-ADMIN
+                  </option>
+                  <option value="ADMIN">ADMIN</option>
+                  <option value="MODERATOR">MODERATOR</option>
+                </select>
+              </div>
+            </div>
+            <div class="input-group flex-column mb-3">
+              <div class="password">
+                <label for="exampleInputPassword1" class="form-label"
+                  >Password</label
+                >
+                <input
+                  [type]="togglePasswordVisibility ? 'text' : 'password'"
+                  class="form-control mb-3"
+                  id="exampleInputPassword1"
+                  formControlName="password"
+                />
+                <div
+                  class="password-show-toggle"
+                  (click)="togglePasswordVisibility = !togglePasswordVisibility"
+                >
+                  <img
+                    [src]="togglePasswordVisibility ? '/assets/images/eye.svg' : '/assets/images/no.eye.svg'"
+                    width="25"
+                    alt="eye"
+                  />
+                </div>
+              </div>
+              <div class="password">
+                <label for="exampleInputPassword2" class="form-label"
+                  >Password Confirm</label
+                >
+                <input
+                  [type]="togglePasswordConfirmVisibility ? 'text' : 'password'"
+                  class="form-control"
+                  id="exampleInputPassword2"
+                  placeholder="Confirm your password"
+                  formControlName="passwordConfirm"
+                />
+                <div
+                  class="password-show-toggle"
+                  (click)="togglePasswordConfirmVisibility = !togglePasswordConfirmVisibility"
+                >
+                  <img
+                    [src]="togglePasswordConfirmVisibility ? '/assets/images/eye.svg' : '/assets/images/no.eye.svg'"
+                    width="25"
+                    alt="eye"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <div class="form-check me-4">
+                <label class="form-check-label" for="active"> Active </label>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  id="active"
+                  name="flexRadioDefault"
+                  checked
+                />
+              </div>
+              <div class="form-check">
+                <label class="form-check-label" for="inactive">
+                  Inactive
+                </label>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  id="inactive"
+                  name="flexRadioDefault"
+                />
+              </div>
+            </div>
+            <div>
+              <button
+                type="button"
+                class="btn btn-warning text-white w-100 mb-3"
+                (click)="randomize()"
+              >
+                RANDOMIZE
+              </button>
+              <button type="submit" class="btn btn-primary w-100 mb-3">
+                SAVE
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,19 +1,24 @@
 .dashboard-aside-left {
-    position: sticky !important;
-    top: 0;
-    left: 0;
-    max-width: 20%;
-    width: 20%;
-    height: 100vh;
-    border-right: 1px solid #E6EFF5;
-    padding-top: 30px;
+  position: sticky !important;
+  top: 0;
+  left: 0;
+  max-width: 20%;
+  width: 20%;
+  height: 100vh;
+  border-right: 1px solid #e6eff5;
+  padding-top: 30px;
+  transition: all 0.5s ease;
+  &-closed {
+    width: 0px;
+  }
 }
 
 .dashboard-aside-right {
-    width: 100%;
-    background-color: #F5F7FA;
+  width: 100%;
+  background-color: #f5f7fa;
 
-    &-body {
-        padding: 20px;
-    }
+  &-body {
+    padding: 20px;
+  }
 }
+

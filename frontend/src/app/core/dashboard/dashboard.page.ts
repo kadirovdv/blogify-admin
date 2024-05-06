@@ -6,6 +6,9 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
+
+  isSidebarVisible = true;
+
   constructor(
     private title: Title
   ) {
@@ -14,5 +17,9 @@ export class DashboardPage implements OnInit {
 
   ngOnInit(): void {
    
+  }
+
+  handleToggleSidebar(state: boolean) {
+    this.isSidebarVisible = state;
   }
 }

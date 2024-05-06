@@ -11,11 +11,7 @@ router.route("/signup").post(authController.signup);
 
 router
   .route("/create")
-  .post(
-    authController.protect,
-    adminController.permissions("CREATE"),
-    adminController.createAdminManually
-  );
+  .post(authController.protect, adminController.createAdminManually);
 
 router.route("/login").post(authController.login);
 
@@ -51,6 +47,14 @@ router
     authController.protect,
     adminController.permissions("DELETE"),
     adminController.deleteAdminById
+  );
+
+router
+  .route("/delete/byrole")
+  .delete(
+    authController.protect,
+    adminController.permissions("DELETE"),
+    adminController.deleteAdminsByRole
   );
 
 module.exports = router;

@@ -1,5 +1,5 @@
 <div class="sidebar-header">
-  <div class="sidebar-header-logo" routerLink="/dashboard">
+  <div class="sidebar-header-logo" routerLink="/dashboard" [class.sidebar-header-logo-hidden]="!isSidebarVisible">
     <img src="/assets/images/logo.png" alt="LOGO" />
     <h4 class="ms-2">Dashboard</h4>
   </div>

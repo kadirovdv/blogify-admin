@@ -1,7 +1,15 @@
 <div class="dashboard d-flex">
-  <div class="dashboard-aside-left">
-    <app-sidebar-header></app-sidebar-header>
-    <app-sidebar></app-sidebar>
+  <div
+    class="dashboard-aside-left"
+    [class.dashboard-aside-left-closed]="!isSidebarVisible"
+  >
+    <app-sidebar-header
+      [isSidebarVisible]="isSidebarVisible"
+    ></app-sidebar-header>
+    <app-sidebar
+      (toggleSidebar)="handleToggleSidebar($event)"
+      [isSidebarVisible]="isSidebarVisible"
+    ></app-sidebar>
   </div>
   <div class="dashboard-aside-right">
     <app-dashboard-navbar></app-dashboard-navbar>

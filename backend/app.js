@@ -49,7 +49,7 @@ const limiter = rateLimit({
   message: "Too many requests from this IP, try again after an hour",
 });
 
-app.use("/api", limiter);
+// app.use("/api", limiter);
 app.use("/api/admin", adminRoutes);
 
 app.all("*", (request, response, next) => {

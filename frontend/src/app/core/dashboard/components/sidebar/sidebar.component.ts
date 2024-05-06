@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { AdminAuthService } from 'src/app/core/shared/services/admin.auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -6,6 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent implements OnInit {
-  constructor() {}
+  @Output() toggleSidebar: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Input() isSidebarVisible = false;
+
+  constructor(public authService: AdminAuthService) {}
   ngOnInit() {}
+
+  toggle() {
+    this.isSidebarVisible = !this.isSidebarVisible;
+    this.toggleSidebar.emit(this.isSidebarVisible);
+    console.log(this.isSidebarVisible);
+  }
 }

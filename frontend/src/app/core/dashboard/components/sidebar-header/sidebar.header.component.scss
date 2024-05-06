@@ -15,4 +15,11 @@
   align-items: center;
   padding-left: 35px;
   padding-right: 35px;
+  transition: all 0.5s ease;
+  visibility: visible;
+  opacity: 1;
+  &-hidden {
+    visibility: hidden;
+    opacity: 0;
+  }
 }

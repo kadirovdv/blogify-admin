@@ -5,11 +5,12 @@ import { ToastrService } from 'ngx-toastr';
 import { Admin } from 'src/app/core/shared/interfaces/admin.interface';
 import { AdminAuthService } from 'src/app/core/shared/services/admin.auth.service';
 import { ModalService } from 'src/app/core/shared/services/modal.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-dashboard-admins',
   templateUrl: './admins.page.html',
-  styleUrls: ['./admins.page.scss'],
+  styleUrls: ['./admins.page.scss', '../../styles/styles.scss'],
 })
 export class AdminsPage implements OnInit {
   public loading: boolean = false;
@@ -26,9 +27,11 @@ export class AdminsPage implements OnInit {
     private setNavbarTitle: SetNabvarTitleService,
     private apiService: APIService,
     public authService: AdminAuthService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private title: Title
   ) {
     this.setNavbarTitle.setTitle('Admins');
+    this.title.setTitle('Admins | Blogify');
   }
 
   ngOnInit(): void {
@@ -68,7 +71,9 @@ export class AdminsPage implements OnInit {
         this.loading = false;
       },
 
-      (_) => {}
+      (_) => {
+        this.toastr.error(_.error.message, 'Failed to fetch');
+      }
     );
   }
 
@@ -83,6 +88,17 @@ export class AdminsPage implements OnInit {
       },
       (_) => {
         this.toastr.error(_.error.message, 'Failed to block');
+      }
+    );
+  }
+
+  deleteAdminByRole(role: string) {
+    this.apiService.deleteAdminByRole(role).subscribe(
+      () => {
+        this.getAdmins();
+      },
+      (_) => {
+        this.toastr.error(_.error.message, 'Failed to delete');
       }
     );
   }

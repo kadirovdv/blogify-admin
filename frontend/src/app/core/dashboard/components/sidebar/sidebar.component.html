@@ -1,4 +1,8 @@
-<div class="sidebar">
+<div class="sidebar" [class.sidebar-closed]="!isSidebarVisible">
+  <div class="sidebar-close" [tooltip]="isSidebarVisible ? 'Close' : 'Open'" (click)="toggle()">
+    <div class="sidebar-close-top"></div>
+    <div class="sidebar-close-bottom"></div>
+  </div>
   <div class="sidebar-body">
     <div class="sidebar-item" [routerLinkActive]="'sidebar-item-active'">
       <svg
@@ -61,6 +65,28 @@
         <path d="M5 17l3 3l3 -3" />
       </svg>
       <a routerLink="/dashboard/requests">Requests</a>
+    </div>
+    <div class="sidebar-item" [routerLinkActive]="'sidebar-item-active'">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="icon icon-tabler icon-tabler-user-edit"
+        width="25"
+        height="25"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="#2c3e50"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+        <path d="M6 21v-2a4 4 0 0 1 4 -4h3.5" />
+        <path
+          d="M18.42 15.61a2.1 2.1 0 0 1 2.97 2.97l-3.39 3.42h-3v-3l3.42 -3.39z"
+        />
+      </svg>
+      <a [routerLink]="['/dashboard/admins/' + authService.getUsername()]">Your admins</a>
     </div>
   </div>
 </div>

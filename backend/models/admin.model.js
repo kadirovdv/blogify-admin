@@ -73,20 +73,7 @@ adminSchema.pre("save", function (next) {
 });
 
 adminSchema.pre("save", function (next) {
-  if (
-    !this.roles.includes("ADMIN") &&
-    !this.roles.includes("ADMIN-CONTROLLER") &&
-    !this.roles.includes("SUPER-ADMIN")
-  ) {
-    this.roles = "MODERATOR";
-    this.permissions = ["READ", "SELF"];
-    next();
-  } else if (
-    !this.roles.includes("MODERATOR") &&
-    !this.roles.includes("ADMIN-CONTROLLER") &&
-    !this.roles.includes("SUPER-ADMIN")
-  ) {
-    this.roles = "ADMIN";
+  if (this.roles === "MODERATOR" || this.roles === "ADMIN") {
     this.permissions = ["READ", "SELF"];
     next();
   } else {

@@ -1,3 +1,4 @@
+const { request } = require("../app");
 const Admin = require("../models/admin.model");
 const appAsyncHandler = require("../utils/app.async.handler");
 const ErrorMessage = require("../utils/error.handler");
@@ -39,9 +40,12 @@ exports.permissions = (...permissions) => {
       }
     });
 
+
     if (
-      admin.roles.includes("SUPER-ADMIN") ||
-      admin.roles.includes("ADMIN-CONTROLLER")
+      admin?.roles?.includes("SUPER-ADMIN") ||
+      admin?.roles?.includes("ADMIN-CONTROLLER") ||
+      request?.body?.role.includes("SUPER-ADMIN") ||
+      request?.body?.role.includes("ADMIN-CONTROLLER")
     ) {
       return next(
         new ErrorMessage(
@@ -52,8 +56,8 @@ exports.permissions = (...permissions) => {
     }
 
     if (
-      admin.username === request.admin.username &&
-      admin.roles === request.admin.roles
+      admin?.username === request?.admin?.username &&
+      admin?.roles === request?.admin?.roles
     ) {
       return next(
         new ErrorMessage(
@@ -122,6 +126,7 @@ exports.createAdminManually = appAsyncHandler(
       ...request.body,
       passwordChangedAt: Date.now(),
     });
+
     /*
     username: request.body.username,
     password: request.body.password,
@@ -172,3 +177,17 @@ exports.blockAdmin = appAsyncHandler(async (request, response, next) => {
     return next(new ErrorMessage("Admin not found", 400));
   }
 });
+
+exports.deleteAdminsByRole = appAsyncHandler(
+  async (request, response, next) => {
+    const { role } = request.body;
+
+    const requestRole = await Admin.deleteMany({ roles: role });
+
+    response
+      .status(200)
+      .json({
+        message: requestRole.deletedCount + " " + "users have been deleted.",
+      });
+  }
+);

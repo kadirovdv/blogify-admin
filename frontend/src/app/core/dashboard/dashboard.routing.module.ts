@@ -5,6 +5,7 @@ import { ProfilePage } from './pages/profile/profile.page';
 import { AdminsPage } from './pages/admins/admins.page';
 import { RequestsPage } from './pages/requests/requests.page';
 import { BlogPostsPage } from './pages/blogs-posts/blog-posts.page';
+import { CreateAdminPage } from './pages/create-admin/create.admin.page';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard/admins', pathMatch: 'full' },
@@ -16,6 +17,7 @@ const routes: Routes = [
       { path: 'admins', component: AdminsPage },
       { path: 'requests', component: RequestsPage },
       { path: 'blog-posts', component: BlogPostsPage },
+      { path: 'create-admin', component: CreateAdminPage }
     ],
   },
 ];
