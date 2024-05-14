@@ -1,0 +1,16 @@
+<div class="modal-header">
+    <h5 class="modal-title">Delete admin by {{modalService.getProps().id}} id?</h5>
+    <button type="button" class="btn-close" (click)="modal.close()"></button>
+  </div>
+  <div class="modal-body">
+    <p>
+      Do you really want to delete the admin by {{ modalService.getProps().id }} id?
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close()">
+      Close
+    </button>
+    <button type="button" class="btn btn-danger" (click)="[deleteAdminById(), modal.close()]">Delete</button>
+  </div>
+  

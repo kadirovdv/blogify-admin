@@ -3,58 +3,79 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcryptjs");
 
-const adminSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    unique: true,
-    required: [
-      true,
-      "Please provide a username in order us to know your account",
-    ],
-    maxlength: [13, "Username must not be more than 13 characters"],
-    minlength: [7, "Username must be at least 7 characters"],
-  },
-  password: {
-    type: String,
-    required: [true, "Enter a password for this account"],
-    minlength: [7, "Password length must be at least 7 characters"],
-    select: false,
-  },
-  passwordConfirm: {
-    type: String,
-    required: [true, "Enter a password for this account"],
-    minlength: [7, "Password length must be at least 7 characters"],
-    validate: {
-      validator: function (value) {
-        return value === this.password;
-      },
-      message: "Passwords do not match",
+const adminSchema = new mongoose.Schema(
+  {
+    username: {
+      type: String,
+      unique: true,
+      required: [
+        true,
+        "Please provide a username in order us to know your account",
+      ],
+      maxlength: [13, "Username must not be more than 13 characters"],
+      minlength: [7, "Username must be at least 7 characters"],
     },
+    password: {
+      type: String,
+      required: [true, "Enter a password for this account"],
+      minlength: [7, "Password length must be at least 7 characters"],
+      select: false,
+    },
+    passwordConfirm: {
+      type: String,
+      required: [true, "Enter a password for this account"],
+      minlength: [7, "Password length must be at least 7 characters"],
+      validate: {
+        validator: function (value) {
+          return value === this.password;
+        },
+        message: "Passwords do not match",
+      },
+    },
+    active: {
+      type: Boolean,
+      default: true,
+    },
+    email: {
+      type: String,
+      required: false,
+      unique: true,
+      validate: [validator.isEmail, "Please enter a valid email"],
+    },
+    // photo: String,
+    roles: {
+      type: String,
+      enum: ["ADMIN", "MODERATOR", "SUPER-ADMIN", "ADMIN-CONTROLLER"],
+      default: "ADMIN",
+    },
+    permissions: {
+      type: [String],
+      enum: ["READ", "CREATE", "UPDATE", "DELETE", "SELF", "NOTSELF"],
+    },
+    creator: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Admin",
+    },
+    passwordChangedAt: Date,
+    passwordResetToken: String,
+    passwordResetExpires: Date,
+    willBeActivatedAt: Date,
   },
-  active: {
-    type: Boolean,
-    default: true,
-  },
-  email: {
-    type: String,
-    required: false,
-    unique: true,
-    validate: [validator.isEmail, "Please enter a valid email"],
-  },
-  // photo: String,
-  roles: {
-    type: String,
-    enum: ["ADMIN", "MODERATOR", "SUPER-ADMIN", "ADMIN-CONTROLLER"],
-    default: "ADMIN",
-  },
-  permissions: {
-    type: [String],
-    enum: ["READ", "CREATE", "UPDATE", "DELETE", "SELF", "NOTSELF"],
-  },
-  passwordChangedAt: Date,
-  passwordResetToken: String,
-  passwordResetExpires: Date,
-  willBeActivatedAt: Date,
+  {
+    toJSON: {
+      virtuals: true,
+    },
+    toObject: {
+      virtuals: true,
+    },
+    timestamps: true,
+  }
+);
+
+adminSchema.virtual("createdAdmins", {
+  ref: "Admin",
+  localField: "_id",
+  foreignField: "creator",
 });
 
 adminSchema.pre("save", async function (next) {

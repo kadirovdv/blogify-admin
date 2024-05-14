@@ -3,3 +3,7 @@
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
 @import url("https://unpkg.com/css.gg/icons/icons.css");
+
+.cursor-pointer {
+    cursor: pointer;
+}

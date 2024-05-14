@@ -13,6 +13,7 @@ const ngrok = require("ngrok");
 // Importing Routes&Controllers
 
 const adminRoutes = require("./routes/admin.routes");
+const blogPostRoutes = require("./routes/blog.post.routes");
 
 const errorController = require("./controllers/error.controller");
 
@@ -51,6 +52,7 @@ const limiter = rateLimit({
 
 // app.use("/api", limiter);
 app.use("/api/admin", adminRoutes);
+app.use("/api/blog-post", blogPostRoutes);
 
 app.all("*", (request, response, next) => {
   next(new ErrorMessage(`Could not find ${request.originalUrl}`, 404));

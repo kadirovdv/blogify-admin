@@ -116,19 +116,28 @@
             Delete
           </button>
           <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <button ngbDropdownItem (click)="deleteAdminByRole('ADMIN')">
+            <button
+              ngbDropdownItem
+              (click)="[adminRoleToDelete = 'ADMIN', openDeleteAllAdminModal()]"
+            >
               ADMIN
             </button>
-            <button ngbDropdownItem (click)="deleteAdminByRole('MODERATOR')">
+            <button
+              ngbDropdownItem
+              (click)="[adminRoleToDelete = 'MODERATOR', openDeleteAllAdminModal()]"
+            >
               MODERATOR
             </button>
             <button
               ngbDropdownItem
-              (click)="deleteAdminByRole('ADMIN-CONTROLLER')"
+              (click)="[adminRoleToDelete = 'ADMIN-CONTROLLER', openDeleteAllAdminModal()]"
             >
               ADMIN-CONTROLLER
             </button>
-            <button ngbDropdownItem (click)="deleteAdminByRole('SUPER-ADMIN')">
+            <button
+              ngbDropdownItem
+              (click)="[adminRoleToDelete = 'SUPER-ADMIN', openDeleteAllAdminModal()]"
+            >
               SUPER-ADMIN
             </button>
           </div>
@@ -177,6 +186,7 @@
               <button
                 class="btn btn-danger me-2"
                 [disabled]="admin.roles.includes('SUPER-ADMIN') || admin.roles.includes('ADMIN-CONTROLLER')"
+                (click)="[adminID = admin._id, openDeleteAdminByIdModal()]"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

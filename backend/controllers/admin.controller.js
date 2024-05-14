@@ -1,4 +1,3 @@
-const { request } = require("../app");
 const Admin = require("../models/admin.model");
 const appAsyncHandler = require("../utils/app.async.handler");
 const ErrorMessage = require("../utils/error.handler");
@@ -16,11 +15,19 @@ const filteredBody = (obj, ...allowedFields) => {
 };
 
 exports.getAllAdmins = appAsyncHandler(async (request, response) => {
-  Admin.find().then((admins) => response.json(admins));
+  const admins = await Admin.find({}).populate("creator");
+
+  response.status(200).json({
+    success: true,
+    count: admins.length,
+    admins
+  })
 });
 
 exports.getAdminById = appAsyncHandler(async (request, response, next) => {
-  const admin = await Admin.findById(request.params.id);
+  const admin = await Admin.findById(request.params.id).populate(
+    "createdAdmins"
+  );
 
   if (!admin) {
     return next(new ErrorMessage("Admin not found", 404));
@@ -40,12 +47,11 @@ exports.permissions = (...permissions) => {
       }
     });
 
-
     if (
       admin?.roles?.includes("SUPER-ADMIN") ||
       admin?.roles?.includes("ADMIN-CONTROLLER") ||
-      request?.body?.role.includes("SUPER-ADMIN") ||
-      request?.body?.role.includes("ADMIN-CONTROLLER")
+      request?.body?.role?.includes("SUPER-ADMIN") ||
+      request?.body?.role?.includes("ADMIN-CONTROLLER")
     ) {
       return next(
         new ErrorMessage(
@@ -124,6 +130,7 @@ exports.createAdminManually = appAsyncHandler(
 
     const admin = await Admin.create({
       ...request.body,
+      creator: request.admin._id,
       passwordChangedAt: Date.now(),
     });
 
@@ -184,10 +191,25 @@ exports.deleteAdminsByRole = appAsyncHandler(
 
     const requestRole = await Admin.deleteMany({ roles: role });
 
-    response
-      .status(200)
-      .json({
-        message: requestRole.deletedCount + " " + "users have been deleted.",
-      });
+    response.status(200).json({
+      message: requestRole.deletedCount + " " + "admins have been deleted.",
+    });
+  }
+);
+
+exports.getAllCreatedAdmins = appAsyncHandler(
+  async (request, response, next) => {
+    console.log(request.admin);
+    const admins = await Admin.findById(request.admin._id).populate(
+      "createdAdmins"
+    );
+
+    if (!admins) {
+      response
+        .status(204)
+        .json({ message: "You have not created any admins yet." });
+    }
+
+    response.status(200).json({ admins: admins });
   }
 );

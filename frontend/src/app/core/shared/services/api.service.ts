@@ -25,6 +25,10 @@ export class APIService {
     return this.http.post('/api/admin/create', admin);
   }
 
+  deleteAdminById(id: string): Observable<any> {
+    return this.http.delete(`/api/admin/delete/${id}`);
+  }
+
   deleteAdminByRole(role: string): Observable<any> {
     const options = {
       headers: new HttpHeaders({

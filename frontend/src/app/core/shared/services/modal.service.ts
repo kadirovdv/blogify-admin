@@ -1,21 +1,26 @@
 import { Injectable } from '@angular/core';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { ModalComponent } from '../components/modal/modal.component';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ModalService {
-  private modalRef: any;
+  props: any;
+  constructor(public ngbModal: NgbModal) {}
 
-  constructor(private ngbModal: NgbModal) {}
+  setProps(props: any) {
+    return (this.props = props);
+  }
+  getProps() {
+    return this.props;
+  }
 
-  open(props: any): Promise<any> {
-    this.modalRef = this.ngbModal.open(ModalComponent, {
-      size: props.size,
-      backdrop: 'static',
-    });
-
-    return this.modalRef.result;
+  open(
+    modalComponent: any,
+    options: NgbModalOptions
+  ): Promise<any> {
+    const modal = this.ngbModal.open(modalComponent, options);
+    
+    return modal.result;
   }
 }

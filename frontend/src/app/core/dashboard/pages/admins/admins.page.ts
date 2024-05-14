@@ -6,6 +6,9 @@ import { Admin } from 'src/app/core/shared/interfaces/admin.interface';
 import { AdminAuthService } from 'src/app/core/shared/services/admin.auth.service';
 import { ModalService } from 'src/app/core/shared/services/modal.service';
 import { Title } from '@angular/platform-browser';
+import { AdminDeleteModal } from '../../../shared/components/modals/admin-delete-modal/admin.delete.modal';
+import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { AdminDeleteByIdModal } from 'src/app/core/shared/components/modals/admin-delete-byid/admin.delete.by.id.modal';
 
 @Component({
   selector: 'app-dashboard-admins',
@@ -23,12 +26,18 @@ export class AdminsPage implements OnInit {
   adminIDToBlock: string = '';
   public adminID: string | null = sessionStorage.getItem('adminID');
 
+  // Vars to delete an admin
+  public adminRoleToDelete: string = null || '';
+
+  // Vars for modal
+
   constructor(
     private setNavbarTitle: SetNabvarTitleService,
     private apiService: APIService,
     public authService: AdminAuthService,
     private toastr: ToastrService,
-    private title: Title
+    private title: Title,
+    private modalService: ModalService
   ) {
     this.setNavbarTitle.setTitle('Admins');
     this.title.setTitle('Admins | Blogify');
@@ -59,15 +68,15 @@ export class AdminsPage implements OnInit {
     this.loading = true;
     this.adminList = [];
     this.apiService.getAdmins().subscribe(
-      (admins: Admin[]) => {
-        this.adminList.push(...admins);
+      (admins: any) => {
+        this.adminList.push(...admins.admins);
         this.adminRoles = {
           ADMIN: 0,
           MODERATOR: 0,
           'SUPER-ADMIN': 0,
           'ADMIN-CONTROLLER': 0,
         };
-        this.adminRoles = this.countAdminRoles(admins);
+        this.adminRoles = this.countAdminRoles(admins.admins);
         this.loading = false;
       },
 
@@ -92,13 +101,34 @@ export class AdminsPage implements OnInit {
     );
   }
 
-  deleteAdminByRole(role: string) {
-    this.apiService.deleteAdminByRole(role).subscribe(
-      () => {
+  openDeleteAllAdminModal() {
+    const props = { title: this.adminRoleToDelete };
+    this.modalService.setProps(props);
+
+    this.modalService.open(AdminDeleteModal, { size: 'md' }).then(
+      (result) => {
         this.getAdmins();
       },
-      (_) => {
-        this.toastr.error(_.error.message, 'Failed to delete');
+      (reason) => {
+        this.getAdmins();
+      }
+    );
+  }
+
+  openDeleteAdminByIdModal() {
+    const props = { id: this.adminID };
+
+    this.modalService.setProps(props);
+    this.modalService.open(AdminDeleteByIdModal, { size: 'md' }).then(
+      (result) => {
+        setTimeout(() => {
+          this.getAdmins();
+        }, 100);
+      },
+      (reason) => {
+        setTimeout(() => {
+          this.getAdmins();
+        }, 100);
       }
     );
   }

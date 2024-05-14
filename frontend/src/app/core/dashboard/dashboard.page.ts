@@ -6,13 +6,13 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
-
   isSidebarVisible = true;
 
-  constructor(
-    private title: Title
-  ) {
+  constructor(private title: Title) {
     this.title.setTitle('Dashboard | Blogify');
+    this.isSidebarVisible = JSON.parse(
+      localStorage.getItem('isSidebarVisible') || ''
+    );
   }
 
   ngOnInit(): void {

@@ -7,7 +7,9 @@ import { HttpRequestProgressbarComponent } from './components/http-request-progr
 import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
-import { ModalComponent } from './components/modal/modal.component';
+import { AdminDeleteModal } from './components/modals/admin-delete-modal/admin.delete.modal';
+import { GoBackComponent } from './components/go-back/go.back.component';
+import { AdminDeleteByIdModal } from './components/modals/admin-delete-byid/admin.delete.by.id.modal';
 
 @NgModule({
   imports: [
@@ -16,19 +18,27 @@ import { ModalComponent } from './components/modal/modal.component';
     NgbToastModule,
     TooltipModule,
     NgxSkeletonLoaderModule,
-    NgbModule
+    NgbModule,
   ],
-  declarations: [NotFoundPage, HttpRequestProgressbarComponent, ModalComponent],
+  declarations: [
+    NotFoundPage,
+    HttpRequestProgressbarComponent,
+    AdminDeleteModal,
+    AdminDeleteByIdModal,
+    GoBackComponent,
+  ],
   exports: [
     NotFoundPage,
     HttpRequestProgressbarComponent,
+    AdminDeleteModal,
+    AdminDeleteByIdModal,
+    GoBackComponent,
     NgProgressModule,
-    ModalComponent,
     HttpClientModule,
     NgbToastModule,
     TooltipModule,
     NgxSkeletonLoaderModule,
-    NgbModule
+    NgbModule,
   ],
   providers: [],
 })

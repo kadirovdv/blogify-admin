@@ -16,6 +16,9 @@ export class SidebarComponent implements OnInit {
   toggle() {
     this.isSidebarVisible = !this.isSidebarVisible;
     this.toggleSidebar.emit(this.isSidebarVisible);
-    console.log(this.isSidebarVisible);
+    localStorage.setItem(
+      'isSidebarVisible',
+      JSON.stringify(this.isSidebarVisible)
+    );
   }
 }

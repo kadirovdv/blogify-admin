@@ -8,6 +8,7 @@
   border-right: 1px solid #e6eff5;
   padding-top: 30px;
   transition: all 0.5s ease;
+  z-index: 999 !important;
   &-closed {
     width: 0px;
   }

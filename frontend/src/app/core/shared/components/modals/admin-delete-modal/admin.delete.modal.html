@@ -1,0 +1,15 @@
+<div class="modal-header">
+  <h5 class="modal-title">Delete {{modalService.getProps().title}}?</h5>
+  <button type="button" class="btn-close" (click)="modal.close()"></button>
+</div>
+<div class="modal-body">
+  <p>
+    Do you really want to delete all the {{ modalService.getProps().title }}?
+  </p>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="modal.close()">
+    Close
+  </button>
+  <button type="button" class="btn btn-danger" (click)="[deleteAdminByRole(), modal.close()]">Delete</button>
+</div>

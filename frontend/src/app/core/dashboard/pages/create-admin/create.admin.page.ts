@@ -87,7 +87,7 @@ export class CreateAdminPage {
 
     this.togglePasswordVisibility = true;
     this.togglePasswordConfirmVisibility = true;
-    
+
     if (
       this.authServie.getRole() !== 'ADMIN-CONTROLLER' &&
       this.authServie.getRole() !== 'SUPER-ADMIN'

@@ -40,14 +40,7 @@ router.patch(
   adminController.blockAdmin
 );
 
-router
-  .route("/:id")
-  .get(authController.protect, adminController.getAdminById)
-  .delete(
-    authController.protect,
-    adminController.permissions("DELETE"),
-    adminController.deleteAdminById
-  );
+router.route("/:id").get(authController.protect, adminController.getAdminById);
 
 router
   .route("/delete/byrole")
@@ -56,5 +49,18 @@ router
     adminController.permissions("DELETE"),
     adminController.deleteAdminsByRole
   );
+
+router.delete(
+  "/delete/:id",
+  authController.protect,
+  adminController.permissions("DELETE"),
+  adminController.deleteAdminById
+);
+
+router.get(
+  "/created-admins",
+  authController.protect,
+  adminController.getAllCreatedAdmins
+);
 
 module.exports = router;
