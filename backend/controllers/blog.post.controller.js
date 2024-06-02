@@ -3,7 +3,7 @@ const appAsyncHandler = require("../utils/app.async.handler");
 const ErrorMessage = require("../utils/error.handler");
 
 exports.getAllBlogPosts = appAsyncHandler(async (request, response, next) => {
-  const blogPosts = await BlogPost.find({})
+  const blogPosts = await BlogPost.find({});
 
   response.status(200).json({
     success: true,
@@ -21,5 +21,17 @@ exports.createBlogPost = appAsyncHandler(async (request, response, next) => {
   response.json(200).json({
     success: true,
     blogPost,
+  });
+});
+
+exports.deleteBlogPost = appAsyncHandler(async (request, response, next) => {
+  const blogPost = await BlogPost.findByIdAndDelete(request.params.id);
+
+  if (!blogPost) {
+    return next(new ErrorMessage("Blog post not found", 404));
+  }
+
+  response.status(200).json({
+    success: true,
   });
 });

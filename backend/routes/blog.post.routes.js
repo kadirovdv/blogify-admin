@@ -6,8 +6,14 @@ const hpp = require("hpp");
 
 const router = express.Router();
 
-router.get("/", blogPostController.getAllBlogPosts);
+router.get("/", authController.protect, blogPostController.getAllBlogPosts);
 
-router.post("/create", blogPostController.createBlogPost)
+router.post("/create", blogPostController.createBlogPost);
+
+router.delete(
+  "/:id",
+  authController.protect,
+  blogPostController.deleteBlogPost
+);
 
 module.exports = router;

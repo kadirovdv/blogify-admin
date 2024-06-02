@@ -1,5 +1,16 @@
 const mongoose = require("mongoose");
 
+const contentItemSchema = new mongoose.Schema({
+  image: { type: [String], required: true },
+  headline: { type: String, required: true },
+  body: { type: String, required: true },
+  link: { type: String },
+  quote: { type: String },
+  warning: { type: String },
+  code: { type: String },
+  createdAt: { type: Date, default: Date.now },
+});
+
 const blogPostSchema = new mongoose.Schema(
   {
     title: {
@@ -7,7 +18,7 @@ const blogPostSchema = new mongoose.Schema(
       required: true,
     },
     content: {
-      type: [String],
+      type: [contentItemSchema],
       required: true,
     },
     // author: {

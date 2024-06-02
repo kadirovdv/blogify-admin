@@ -40,4 +40,10 @@ export class APIService {
     };
     return this.http.delete('/api/admin/delete/byrole', options);
   }
+
+  // Blog Posts
+
+  getPosts() {
+    return this.http.get('/api/blog-post');
+  }
 }
