@@ -5,6 +5,9 @@
     background-color: #f5f7fa !important;
     table {
       background-color: transparent !important;
+      tbody {
+        vertical-align: middle !important;
+      }
     }
   }
 }

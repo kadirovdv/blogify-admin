@@ -16,7 +16,6 @@ export class ProgressBarService {
       this.createProgressBar(name);
     }
     this.progressRef[name].start();
-    console.log(name);
   }
 
   complete(name: string): void {

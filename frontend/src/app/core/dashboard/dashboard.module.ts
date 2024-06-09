@@ -10,6 +10,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { SetNabvarTitleService } from './services/set.navbar.title.service';
 import { AdminsPage } from './pages/admins/admins.page';
 import { CreateAdminPage } from './pages/create-admin/create.admin.page';
+import { BlogPostsPage } from './pages/blogs-posts/blog-posts.page';
+import { CreateBlogpostPage } from './pages/create-blogpost/create-blogpost.page';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { CreateAdminPage } from './pages/create-admin/create.admin.page';
     SidebarHeaderComponent,
     NavbarComponent,
     AdminsPage,
-    CreateAdminPage
+    CreateAdminPage,
+    BlogPostsPage,
+    CreateBlogpostPage
   ],
   imports: [
     DashboardRoutingModule,

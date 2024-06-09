@@ -30,6 +30,10 @@ const blogPostSchema = new mongoose.Schema(
       type: Date,
       default: Date.now,
     },
+    active: {
+      type: Boolean,
+      default: true,
+    },
   },
   { timestamps: true }
 );

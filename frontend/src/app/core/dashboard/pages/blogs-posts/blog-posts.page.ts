@@ -8,6 +8,12 @@ import { APIService } from 'src/app/core/shared/services/api.service';
   styleUrls: ['./blog-posts.page.scss', '../../styles/styles.scss'],
 })
 export class BlogPostsPage implements OnInit {
+  public loading: boolean = false;
+  public deleteByGroupMode: boolean = false;
+
+  blogPosts: Array<any> = [];
+
+
   constructor(
     private setNavbarTitle: SetNabvarTitleService,
     private apiService: APIService
@@ -15,12 +21,15 @@ export class BlogPostsPage implements OnInit {
     this.setNavbarTitle.setTitle('Blog-Posts');
   }
   ngOnInit(): void {
-    this.getBlogPosts()
+    this.getBlogPosts();
   }
 
   getBlogPosts() {
-    this.apiService.getPosts().subscribe((res) => {
-      console.log(res);
+    this.loading = true;
+    this.blogPosts = [];
+    this.apiService.getPosts().subscribe((blogPosts: any) => {
+      this.blogPosts.push(...blogPosts.blogPosts);
+      this.loading = false;
     });
   }
 }

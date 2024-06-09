@@ -150,39 +150,59 @@
           Add new
         </button>
       </div>
-      <table class="table admin-list">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Role</th>
-            <th scope="col">Status</th>
-            <th scope="col">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let admin of adminList, let idx = index">
-            <th scope="row">{{ idx + 1 }}</th>
-            <td>{{ admin.username }}</td>
-            <td *ngIf="admin.email; else noemail">{{ admin.email }}</td>
+      <div class="admin-list">
+        <div class="row">
+          <div class="col-1">
+            <b> # </b>
+          </div>
+          <div class="col">
+            <b> Name </b>
+          </div>
+          <div class="col">
+            <b> Email </b>
+          </div>
+          <div class="col-1">
+            <b> Role </b>
+          </div>
+          <div class="col-1">
+            <b> Status </b>
+          </div>
+          <div class="col">
+            <b> Actions </b>
+          </div>
+        </div>
+        <div class="admin-list-item row align-items-center" *ngFor="let admin of adminList, let idx = index">
+          <div class="col-1">
+            <span> {{ idx + 1 }} </span>
+          </div>
+          <div class="col">
+            <span> {{ admin.username }} </span>
+          </div>
+          <div class="col">
+            <span *ngIf="admin.email; else noemail">{{ admin.email }}</span>
             <ng-template #noemail>
-              <td class="fw-bold">(This user has no email)</td>
+              <b>(This user has no email)</b>
             </ng-template>
-            <td>
+          </div>
+          <div class="col-1">
+            <span>
               <img
                 [src]="admin.roles == 'ADMIN' ? '/assets/images/admin.svg' : admin.roles == 'MODERATOR' ? '/assets/images/moderator.svg' : admin.roles == 'SUPER-ADMIN' ? '/assets/images/super.admin.svg' : '/assets/images/admin.controller.svg'"
                 [tooltip]="admin.roles == 'ADMIN' ? 'ADMIN' : admin.roles == 'MODERATOR' ? 'MODERATOR' : admin.roles == 'SUPER-ADMIN' ? 'SUPER-ADMIN' : 'ADMIN-CONTROLLER'"
                 width="25"
               />
-            </td>
-            <td>
+            </span>
+          </div>
+          <div class="col-1">
+            <span>
               <div
                 [class]="admin.active ? 'active' : 'inactive'"
                 [tooltip]="admin.active ? 'This user is active' : 'This user is inactive'"
               ></div>
-            </td>
-            <td>
+            </span>
+          </div>
+          <div class="col">
+            <span>
               <button
                 class="btn btn-danger me-2"
                 [disabled]="admin.roles.includes('SUPER-ADMIN') || admin.roles.includes('ADMIN-CONTROLLER')"
@@ -283,10 +303,10 @@
                   <path d="M5.7 5.7l12.6 12.6" />
                 </svg>
               </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+            </span>
+          </div>
+        </div>
+      </div>
     </ng-template>
   </div>
 </div>

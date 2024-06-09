@@ -1,3 +1,9 @@
+:host {
+  .app-card {
+    background-color: transparent !important;
+  }
+}
+
 .inactive {
   width: 15px;
   height: 15px;
@@ -12,14 +18,12 @@
   border-radius: 50px;
 }
 
-
 .admin {
   &-roles-count {
     margin-bottom: 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    
   }
   &-role {
     width: 200px;
@@ -66,15 +70,27 @@
       }
     }
   }
+  &-list {
+    padding: 15px 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    &-item {
+      border-bottom: 1px solid #dee2e6;
+      padding: 7px 0px;
+      &:last-child {
+        border-bottom: none !important;
+      }
+    }
+  }
 }
 
 .admin-create-new {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
 }
 
-:host .skeleton-loader-admins ngx-skeleton-loader  {
+:host .skeleton-loader-admins ngx-skeleton-loader {
   width: 100%;
   display: flex;
   justify-content: space-between;

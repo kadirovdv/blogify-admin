@@ -1,0 +1,39 @@
+.inactive {
+  width: 15px;
+  height: 15px;
+  background-color: #dc3545;
+  border-radius: 50px;
+}
+
+.active {
+  width: 15px;
+  height: 15px;
+  background-color: #2d60ff;
+  border-radius: 50px;
+}
+
+.no-status {
+  width: 15px;
+  height: 15px;
+  background-color: #686868;
+  border-radius: 50px;
+}
+
+.blog-posts {
+  &-list {
+    padding: 15px 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    &-item {
+      border-bottom: 1px solid #dee2e6;
+      padding: 7px 0px;
+      // &:last-child {
+      //   border-bottom: none !important;
+      // }
+    }
+  }
+}
+
+.d-inline-block .dropdown-item:active {
+  background-color: #dc3545 !important;
+}
