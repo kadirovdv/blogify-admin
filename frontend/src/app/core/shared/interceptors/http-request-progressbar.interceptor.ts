@@ -6,8 +6,7 @@ import {
   HttpEvent,
   HttpResponse,
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { ProgressBarService } from '../services/progressbar.service';
 
 @Injectable()

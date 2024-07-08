@@ -107,10 +107,14 @@ export class AdminsPage implements OnInit {
 
     this.modalService.open(AdminDeleteModal, { size: 'md' }).then(
       (result) => {
-        this.getAdmins();
+        setTimeout(() => {
+          this.getAdmins();
+        }, 100);
       },
       (reason) => {
-        this.getAdmins();
+        setTimeout(() => {
+          this.getAdmins();
+        }, 100);
       }
     );
   }
